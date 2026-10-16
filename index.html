@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Infographic & Video Demo</title>
+  <style>
+    :root{
+      --gap: 24px;
+      --max-width: 1100px;
+      --bg: #f7f8fb;
+      --card-bg: #ffffff;
+      --accent: #2b6cb0;
+    }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: #111827;
+      display:flex;
+      justify-content:center;
+      padding:32px 16px;
+    }
+    .wrap{
+      width:100%;
+      max-width: var(--max-width);
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      align-items:start;
+    }
+    @media (max-width:800px){
+      .wrap{ grid-template-columns: 1fr; }
+    }
+    .card{
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+    }
+
+    /* Infographic image */
+    .infographic img{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:8px;
+      object-fit:contain;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+    }
+
+    /* Video container keeps aspect ratio and responsive */
+    .video-wrapper{
+      width:100%;
+      aspect-ratio: 16/9; /* modern browsers */
+      background: #000;
+      border-radius:8px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    video{
+      width:100%;
+      height:100%;
+      display:block;
+      background:#000;
+    }
+
+    .meta{
+      margin-top:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      font-size:0.95rem;
+    }
+    .btn{
+      background:var(--accent);
+      color:white;
+      padding:8px 12px;
+      border-radius:6px;
+      text-decoration:none;
+      font-weight:600;
+    }
+    .caption{
+      color:#6b7280;
+      font-size:0.9rem;
+    }
+    /* small helper for downloadable link row */
+    .row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" aria-label="Infographic và video">
+    <!-- Infographic card -->
+    <section class="card infographic" aria-labelledby="infographic-title">
+      <h2 id="infographic-title">Infographic: Tóm tắt thông tin</h2>
+      <!-- loading="lazy" để trì hoãn tải trên màn hình nhỏ -->
+      <img src="infographic.jpg" alt="Infographic: lợi ích của công nghệ số trong học tập" loading="lazy" width="1200" height="800">
+      <div class="meta">
+        <p class="caption">Nguồn:Canva AI</p>
+        <div class="row">
+          <a class="btn" href="infographic.jpg" download>Download ảnh</a>
+          <a class="btn" href="#video" style="background:#16a34a">Xem video liên quan</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video card -->
+    <section class="card" aria-labelledby="video-title">
+      <h2 id="video-title">Video giải thích (MP4)</h2>
+
+      <figure>
+        <div class="video-wrapper" id="video">
+          <video
+            controls
+            preload="metadata"
+            poster="infographic-poster.jpg"
+            aria-describedby="video-desc"
+            playsinline
+            >
+            <!-- Nên cung cấp tối thiểu MP4 (H.264) cho trình duyệt chung -->
+            <source src="video.mp4" type="video/mp4">
+            <!-- Nếu có WebM, thêm nguồn webm -->
+            <!-- <source src="video.webm" type="video/webm"> -->
+            <!-- Caption track (WebVTT) -->
+            <track kind="captions" src="captions.vtt" srclang="vi" label="Tiếng Việt" default>
+            <!-- Fallback -->
+            Trình duyệt của bạn không hỗ trợ thẻ video. Bạn có thể
+            <a href="video.mp4">tải video xuống tại đây</a>.
+          </video>
+        </div>
+        <figcaption id="video-desc" class="caption" style="margin-top:12px;">
+          Thuyết minh: Giải thích infographic bằng video (khoảng 3o giây). Có phụ đề tiếng Việt.
+        </figcaption>
+      </figure>
+
+      <div class="meta" style="margin-top:14px;">
+        <p class="caption">Định dạng: MP4 · Kích thước tệp: khoảng 25 MB</p>
+        <div class="row">
+          <a class="btn" href="video.mp4" download>Tải video</a>
+          <a class="btn" href="captions.vtt" download style="background:#6b7280">Tải phụ đề</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
